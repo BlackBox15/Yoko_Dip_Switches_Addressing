@@ -1,7 +1,4 @@
 
-
-
-
 # YokoDIPAddressing
 Simple DIP-switches addressing helper for Yokogawa stations.
 
