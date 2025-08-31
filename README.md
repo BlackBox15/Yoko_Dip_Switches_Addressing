@@ -1,5 +1,5 @@
 
-# YokoDIPAddressing
+# Yoko_Dip_Switches_Addressing
 Simple console DIP-switches addressing helper for Yokogawa (r) Centum VP (r), ProSafe-RS (r) stations.
 
 
