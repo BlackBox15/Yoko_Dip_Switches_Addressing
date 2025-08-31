@@ -3,12 +3,11 @@ from parseAddressString import parseAddressString
 
 # User input for menu.
 # This variable is initialized with "_" (not empty string) because
-# in checking for memebership empty string "" will return True in
+# in checking for membership empty string "" will return True in
 # any other string (6.10.2. Membership test operations).
-menuInput = "_"
 
 #===============================================================================
-def printMenu():
+def print_menu():
     """Print a menu."""
     
     print()    
@@ -20,24 +19,24 @@ def printMenu():
     print()    
 
 #===============================================================================
-def setAddress():
+def set_address():
     """Set address on DIP switches from user input."""
     
-    MAXDOMAIN = 31
-    MAXSTATION = 64
+    maximum_domain_number = 31
+    max_station_number = 64
     
     try:
-        domainNumber = int(input("Domain number (1-31) --> "))
-        stationNumber = int(input("Station number (1-64) --> "))
+        domain_number = int(input("Domain number (1-31) --> "))
+        station_number = int(input("Station number (1-64) --> "))
         
-        if domainNumber > MAXDOMAIN \
-           or domainNumber < 1 \
-           or stationNumber > MAXSTATION \
-           or stationNumber < 1:
+        if domain_number > maximum_domain_number \
+           or domain_number < 1 \
+           or station_number > max_station_number \
+           or station_number < 1:
             raise ValueError
 
         # Output to console.        
-        printDIP.printDIP(domainNumber, stationNumber)
+        printDIP.printDIP(domain_number, station_number)
         
     except ValueError:
         print()
@@ -45,16 +44,16 @@ def setAddress():
         print("Input should be an integer in range.")
 
 #===============================================================================
-def getAddress():
+def get_address():
     """Get address from user input (from DIP switches)."""
 
     print("""Please input DIP switches configuration \
 as string (domain number: 10000011...).""")
     
-    domainString = input("DOMAIN --> ")
-    stationString = input("STATION --> ")
+    domain_string = input("DOMAIN --> ")
+    station_string = input("STATION --> ")
 
-    address = parseAddressString(domainString, stationString)
+    address = parseAddressString(domain_string, station_string)
     print()
     match(address[0]):
         case 0:
@@ -74,20 +73,20 @@ as string (domain number: 10000011...).""")
 
 
 #====================   Menu cycle  ============================================
-while (True):
+while True:
     
-    printMenu()
+    print_menu()
     menuInput = input("--> ")
     print()
-    match (menuInput):
+    match menuInput:
         case '1':
             print("Set address to DIP.")
-            setAddress()
+            set_address()
         case '2':
             print("Get address from DIP.")
-            getAddress()
+            get_address()
         case 'q' | 'Q':
-            print("Programm is closing...")
+            print("Program is closing...")
             break
         case _:
             print("\tInput a menu item.")
