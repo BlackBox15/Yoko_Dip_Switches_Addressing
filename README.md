@@ -2,6 +2,7 @@
 # Yoko_Dip_Switches_Addressing
 Simple console DIP-switches addressing helper for Yokogawa (r) Centum VP (r), ProSafe-RS (r) stations.
 
+<img width="196" height="327" alt="image" src="https://github.com/user-attachments/assets/2e6011b1-ffee-40fa-b9f1-36f1db7dd468" />
 
 Example:
 
