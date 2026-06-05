@@ -3,12 +3,17 @@ from parseAddressString import parseAddressString
 
 # User input for menu.
 # This variable is initialized with "_" (not empty string) because
-# in checking for memebership empty string "" will return True in
+# in checking for membership empty string "" will return True in
 # any other string (6.10.2. Membership test operations).
-menuInput = "_"
+
+# menuInput = "_"
+
+MAX_DOMAIN_NUMBER = 31
+MAX_STATION_NUMBER = 64
+
 
 #===============================================================================
-def printMenu():
+def print_menu():
     """Print a simple menu."""
     
     print()
@@ -18,27 +23,24 @@ def printMenu():
     print()    
 
 #===============================================================================
-def setAddress():
+def set_address():
     """Set address on DIP switches from user input."""
-    
-    MAXDOMAIN = 31
-    MAXSTATION = 64
     
     print("Please, input an necessary data:")
     
     try:
-        domainNumber = int(input("Domain number (max = 16 for Centum VP, \
+        domain_number = int(input("Domain number (max = 16 for Centum VP, \
 max = 31 for ProSafe-RS) --> "))
-        stationNumber = int(input("Station number (1-64) --> "))
+        station_number = int(input("Station number (1-64) --> "))
         
-        if domainNumber > MAXDOMAIN \
-           or domainNumber < 1 \
-           or stationNumber > MAXSTATION \
-           or stationNumber < 1:
+        if domain_number > MAX_DOMAIN_NUMBER \
+           or domain_number < 1 \
+           or station_number > MAX_STATION_NUMBER \
+           or station_number < 1:
             raise ValueError
 
         # Output to console.        
-        printDIP.printDIP(domainNumber, stationNumber)
+        printDIP.printDIP(domain_number, station_number)
         
     except ValueError:
         print()
@@ -46,16 +48,16 @@ max = 31 for ProSafe-RS) --> "))
         print("Input should be an integer in range.")
 
 #===============================================================================
-def getAddress():
+def get_address():
     """Get address from user input (from DIP switches)."""
 
     print("""Please input DIP switches configuration \
 as string (domain number: 010101101...).""")
     
-    domainString = input("DOMAIN --> ")
-    stationString = input("STATION --> ")
+    domain_string = input("DOMAIN --> ")
+    station_string = input("STATION --> ")
 
-    address = parseAddressString(domainString, stationString)
+    address = parseAddressString(domain_string, station_string)
     print()
     match(address[0]):
         case 0:
@@ -68,22 +70,28 @@ as string (domain number: 010101101...).""")
             print("Station decode error.")
         case 4:
             print(f"Domain number: {address[1]}\nStation number: {address[2]}")
-    
+
 #====================   Menu cycle  ============================================
-while (menuInput not in 'qQ'):
-    
-    printMenu()
-    menuInput = input("--> ")
+def main():
+    menu_input = '_'
 
-    try:
-        caseNumber = int(menuInput)
-    except ValueError:
-        continue
-    else:
-        print()
-        match (caseNumber):
-            case 1:
-                setAddress()
-            case 2:
-                getAddress()
+    while menu_input not in 'qQ':
+        print_menu()
+        menu_input = input("--> ")
 
+        try:
+            case_number = int(menu_input)
+        except ValueError:
+            continue
+        else:
+            print()
+            match case_number:
+                case 1:
+                    set_address()
+                case 2:
+                    get_address()
+
+    print("while doesn't work")
+
+if __name__ == '__main__':
+    main()
