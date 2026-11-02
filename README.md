@@ -40,8 +40,10 @@ Station number (1-64) --> 32
 	
 Get address from DIP.
 Please input DIP switches configuration as string (domain number: 10000011...).
+```
 DOMAIN --> 10000011
 STATION --> 10000011
+```
 
 	=========================
 	|Domain address:		3
