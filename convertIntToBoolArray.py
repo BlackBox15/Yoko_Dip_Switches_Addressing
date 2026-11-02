@@ -1,8 +1,8 @@
-def intToBoolArray(inputNumber):
+def int_to_bool_array(input_number):
     """Convert inputNumber to binary array."""
 
     # Convert integer to binary view string.
-    tempString = f"{inputNumber:b}"
+    tempString = f"{input_number:b}"
 
     result = []
     parityCheck = 0

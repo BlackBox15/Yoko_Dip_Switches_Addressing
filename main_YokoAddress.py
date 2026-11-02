@@ -1,5 +1,5 @@
 import printDIP
-from parseAddressString import parseAddressString
+from parseAddressString import parse_address_string
 
 # User input for menu.
 # This variable is initialized with "_" (not empty string) because
@@ -36,7 +36,7 @@ def set_address():
             raise ValueError
 
         # Output to console.        
-        printDIP.printDIP(domain_number, station_number)
+        printDIP.print_dip(domain_number, station_number)
         
     except ValueError:
         print()
@@ -53,7 +53,7 @@ as string (domain number: 10000011...).""")
     domain_string = input("DOMAIN --> ")
     station_string = input("STATION --> ")
 
-    address = parseAddressString(domain_string, station_string)
+    address = parse_address_string(domain_string, station_string)
     print()
     match(address[0]):
         case 0:

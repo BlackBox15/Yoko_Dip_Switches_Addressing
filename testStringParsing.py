@@ -1,6 +1,6 @@
-from parseAddressString import parseAddressString
+from parseAddressString import parse_address_string
 
-firstArgument = "00010110"
-secondArgument = "01011110"
+first_argument = "00010110"
+second_argument = "01011110"
 
-print(parseAddressString(firstArgument, secondArgument))
+print(parse_address_string(first_argument, second_argument))

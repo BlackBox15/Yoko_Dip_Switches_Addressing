@@ -1,4 +1,4 @@
-def parseAddressString(domainString, stationString):
+def parse_address_string(domain_string, station_string):
     """Parsing input strings to Domain and Station addresses."""
 
     domainNameInList = []
@@ -16,11 +16,11 @@ def parseAddressString(domainString, stationString):
     # Domain address - strictly 8 symbols.
     # 1, 2 bit strictly equal 0.
     
-    if len(domainString) == 8 and \
-            domainString[1] == '0' and \
-            domainString[2] == '0':
+    if len(domain_string) == 8 and \
+            domain_string[1] == '0' and \
+            domain_string[2] == '0':
         
-        domainNameInList = packStringToInteger(domainString)
+        domainNameInList = pack_string_to_integer(domain_string)
         
     else:
         result.insert(0, DOMPARERROR)
@@ -29,9 +29,9 @@ def parseAddressString(domainString, stationString):
     # Checking the length of input string (station number).
     # Station address - strictly 8 symbols.
     
-    if len(stationString) == 8:
+    if len(station_string) == 8:
         
-        stationNameInList = packStringToInteger(stationString)
+        stationNameInList = pack_string_to_integer(station_string)
         
     else:
         result.insert(0, STNPARERROR)
@@ -48,7 +48,7 @@ def parseAddressString(domainString, stationString):
     if (domainQnttyBits % 2 == 0 and domainParityBit == 1) or \
        (domainQnttyBits % 2 != 0 and domainParityBit == 0):
         
-        domainAddress = getAddressNumber(domainNameInList[3:])
+        domainAddress = get_address_number(domainNameInList[3:])
         result.insert(1, domainAddress)
 
         
@@ -59,7 +59,7 @@ def parseAddressString(domainString, stationString):
     if (stationQnttyBits % 2 == 0 and stationParityBit == 1) or \
        (stationQnttyBits % 2 != 0 and stationParityBit == 0):
         
-        stationAddress = getAddressNumber(stationNameInList[1:])
+        stationAddress = get_address_number(stationNameInList[1:])
         result.insert(2, stationAddress)
         
     else:
@@ -70,13 +70,13 @@ def parseAddressString(domainString, stationString):
     result.insert(0, NORMAL)
     return result
 ## ================================================================
-def getAddressNumber(inputInteger):
+def get_address_number(input_integer):
     """Convert Binary List to Integer"""
 
     result = 0
-    powerOfTwo = len(inputInteger) - 1
+    powerOfTwo = len(input_integer) - 1
 
-    for number in inputInteger:
+    for number in input_integer:
         if number == 1:
             
             result += 1 * pow(2, powerOfTwo)
@@ -85,14 +85,14 @@ def getAddressNumber(inputInteger):
 
     return result
 ## ================================================================
-def packStringToInteger(inputString):
+def pack_string_to_integer(input_string):
     """String \"010101011010\" to Integer array [0,1,0,1,0...]"""
 
     ## Empty Integer list.
     result = []
     
-    for singleSymbol in inputString:
-        match(singleSymbol):
+    for single_symbol in input_string:
+        match single_symbol:
             case("0"):
                 result.append(0)
             case("1"):

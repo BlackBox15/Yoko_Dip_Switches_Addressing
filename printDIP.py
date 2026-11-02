@@ -1,4 +1,4 @@
-from convertIntToBoolArray import intToBoolArray 
+from convertIntToBoolArray import int_to_bool_array
 
 def convertToStrig(booleanList):
     """Conversation from boolean list to special string list."""
@@ -15,21 +15,21 @@ def convertToStrig(booleanList):
 
     return result
     
-def printDIP(domainNumber, stationNumber):
+def print_dip(domain_number, station_number):
     """Вывод внешнего вида DIP-переключателей"""
 
     dipSwitchesStringView = []
     
     ## Формирование массива boolean-значений.
-    stationSwitches = intToBoolArray(stationNumber)
-    domainSwitches = intToBoolArray(domainNumber)
+    stationSwitches = int_to_bool_array(station_number)
+    domainSwitches = int_to_bool_array(domain_number)
     
     dipSwitchesStringView.extend(convertToStrig(domainSwitches))
     dipSwitchesStringView.extend(convertToStrig(stationSwitches))
     
     print()
     print(f"""	==========================
-	|Domain address:\t{domainNumber}
+	|Domain address:\t{domain_number}
 	==========================
 	|  off  |  on  |
 	----------------------
@@ -42,7 +42,7 @@ def printDIP(domainNumber, stationNumber):
 	7|{dipSwitchesStringView[6]}|2
 	8|{dipSwitchesStringView[7]}|1
 	==========================
-	|Station address:\t{stationNumber}  
+	|Station address:\t{station_number}  
 	==========================
 	|  off  |  on  |
 	----------------------
