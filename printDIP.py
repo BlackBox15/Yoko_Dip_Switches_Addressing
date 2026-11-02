@@ -28,9 +28,9 @@ def printDIP(domainNumber, stationNumber):
     dipSwitchesStringView.extend(convertToStrig(stationSwitches))
     
     print()
-    print(f"""	======================
-	|Domain address: {domainNumber}
-	======================
+    print(f"""	==========================
+	|Domain address:\t{domainNumber}
+	==========================
 	|  off  |  on  |
 	----------------------
 	1|{dipSwitchesStringView[0]}|parity
@@ -41,9 +41,9 @@ def printDIP(domainNumber, stationNumber):
 	6|{dipSwitchesStringView[5]}|4
 	7|{dipSwitchesStringView[6]}|2
 	8|{dipSwitchesStringView[7]}|1
-	======================
-	|Station address: {stationNumber}  
-	======================
+	==========================
+	|Station address:\t{stationNumber}  
+	==========================
 	|  off  |  on  |
 	----------------------
 	1|{dipSwitchesStringView[8]}|parity

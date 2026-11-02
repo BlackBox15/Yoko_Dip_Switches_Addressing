@@ -6,36 +6,32 @@ from parseAddressString import parseAddressString
 # in checking for membership empty string "" will return True in
 # any other string (6.10.2. Membership test operations).
 
-# menuInput = "_"
-
-MAX_DOMAIN_NUMBER = 31
-MAX_STATION_NUMBER = 64
-
-
 #===============================================================================
 def print_menu():
-    """Print a simple menu."""
+    """Print a menu."""
     
-    print()
-    print("1 - set address on DIP")
-    print("2 - get address from DIP ")
-    print("q - exit")
+    print()    
+    print("--------[ Yoko DIP addressing ]--------")
+    print()    
+    print("1 set address on DIP")
+    print("2 get address from DIP ")
+    print("q quit")
     print()    
 
 #===============================================================================
 def set_address():
     """Set address on DIP switches from user input."""
     
-    print("Please, input an necessary data:")
+    maximum_domain_number = 31
+    max_station_number = 64
     
     try:
-        domain_number = int(input("Domain number (max = 16 for Centum VP, \
-max = 31 for ProSafe-RS) --> "))
+        domain_number = int(input("Domain number (1-31) --> "))
         station_number = int(input("Station number (1-64) --> "))
         
-        if domain_number > MAX_DOMAIN_NUMBER \
+        if domain_number > maximum_domain_number \
            or domain_number < 1 \
-           or station_number > MAX_STATION_NUMBER \
+           or station_number > max_station_number \
            or station_number < 1:
             raise ValueError
 
@@ -52,7 +48,7 @@ def get_address():
     """Get address from user input (from DIP switches)."""
 
     print("""Please input DIP switches configuration \
-as string (domain number: 010101101...).""")
+as string (domain number: 10000011...).""")
     
     domain_string = input("DOMAIN --> ")
     station_string = input("STATION --> ")
@@ -69,29 +65,30 @@ as string (domain number: 010101101...).""")
         case 3:
             print("Station decode error.")
         case 4:
-            print(f"Domain number: {address[1]}\nStation number: {address[2]}")
+            print(f"""\t=========================
+        |Domain address:\t{address[1]}
+        =========================
+        |Station address:\t{address[2]}  
+        =========================""")
+
 
 #====================   Menu cycle  ============================================
-def main():
-    menu_input = '_'
+while True:
+    
+    print_menu()
+    menuInput = input("--> ")
+    print()
+    match menuInput:
+        case '1':
+            print("Set address to DIP.")
+            set_address()
+        case '2':
+            print("Get address from DIP.")
+            get_address()
+        case 'q' | 'Q':
+            print("Program is closing...")
+            break
+        case _:
+            print("\tInput a menu item.")
+        
 
-    while menu_input not in 'qQ':
-        print_menu()
-        menu_input = input("--> ")
-
-        try:
-            case_number = int(menu_input)
-        except ValueError:
-            continue
-        else:
-            print()
-            match case_number:
-                case 1:
-                    set_address()
-                case 2:
-                    get_address()
-
-    print("while doesn't work")
-
-if __name__ == '__main__':
-    main()
